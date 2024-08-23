@@ -22,4 +22,16 @@ public class Sessao {
 
     private LocalDateTime dataAbertura;
     private LocalDateTime dataEncerramento;
+    private Integer duracao;
+
+    @PostLoad
+    private void setDataEncerramento() {
+        if (dataAbertura != null && duracao != null) {
+            this.dataEncerramento = dataAbertura.plusMinutes(duracao);
+        }
+    }
+
+    public void setPauta(Pauta pauta) {
+        this.pauta = pauta;
+    }
 }

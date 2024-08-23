@@ -1,3 +1,4 @@
 package com.votacao.demo.model.dtos;
 
-public record VotoDTO(Long pautaId, String associadoId, String voto) {}
+public record VotoDTO(Long sessaoId, String associadoId, String voto,
+                      Long pautaId) { }

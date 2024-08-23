@@ -7,12 +7,18 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ResultadoMapper {
+
     public Resultado fromDTO(ResultadoDTO dto) {
-        return Resultado.builder()
-                .pauta(Pauta.builder().id(dto.pautaId()).build())
-                .votosSim(dto.votosSim())
-                .votosNao(dto.votosNao())
-                .resultadoFinal(dto.resultadoFinal())
-                .build();
+        Pauta pauta = new Pauta();
+        pauta.setId(dto.pautaId());
+
+
+        Resultado resultado = new Resultado();
+        resultado.setPauta(pauta);
+        resultado.setVotosSim(dto.votosSim());
+        resultado.setVotosNao(dto.votosNao());
+        resultado.setResultadoFinal(dto.resultadoFinal());
+
+        return resultado;
     }
 }

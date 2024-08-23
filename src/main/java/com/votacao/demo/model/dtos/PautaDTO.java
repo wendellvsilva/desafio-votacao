@@ -1,7 +1,13 @@
 package com.votacao.demo.model.dtos;
 
-public record PautaDTO(
-        Long id,
-        String nome
-){}
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public class PautaDTO {
+    private Long id;
+    private String titulo;
+    private String descricao;
+}

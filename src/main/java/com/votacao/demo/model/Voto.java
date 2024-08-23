@@ -18,6 +18,10 @@ public class Voto {
     @JoinColumn(name = "pauta_id")
     private Pauta pauta;
 
+    @ManyToOne
+    @JoinColumn(name = "sessao_id")
+    private Sessao sessao;
+
     private String associadoId;
     private String voto; // sim ou nao
 }
