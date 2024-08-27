@@ -1,4 +1,12 @@
 package com.votacao.demo.model.dtos;
 
-public record VotoDTO(Long sessaoId, String associadoId, String voto,
-                      Long pautaId) { }
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
+public record VotoDTO(Long sessaoId,
+                      String associadoId,
+                      String voto,
+                      Long pautaId)
+{ }

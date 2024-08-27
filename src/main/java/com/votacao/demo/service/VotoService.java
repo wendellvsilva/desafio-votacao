@@ -22,24 +22,20 @@ public class VotoService {
     }
 
     public Voto submitVoto(Long sessaoId, VotoDTO votoDTO) {
-        // Obtém a sessão de votação pelo ID
         var sessao = sessaoService.obterSessaoPorId(sessaoId)
                 .orElseThrow(() -> new RuntimeException("Sessão de votação não encontrada"));
 
-        // Verifica se a sessão está aberta
         if (sessao.getDataAbertura().plusMinutes(sessao.getDuracao()).isBefore(LocalDateTime.now())) {
             throw new RuntimeException("Sessão de votação fechada ou não existe");
         }
 
-        // Verifica se o voto já foi registrado
         var votoExistente = votoRepository.findBySessaoIdAndAssociadoId(sessaoId, votoDTO.associadoId());
         if (votoExistente.isPresent()) {
             throw new RuntimeException("Associado já votou nesta sessão");
         }
 
-        // Converte DTO para entidade e salva o voto
         Voto voto = votoMapper.fromDTO(votoDTO);
-        voto.setSessao(sessao);  // Associa a sessão ao voto
+        voto.setSessao(sessao);
         return votoRepository.save(voto);
     }
 }

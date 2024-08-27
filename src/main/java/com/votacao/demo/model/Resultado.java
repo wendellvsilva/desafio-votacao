@@ -20,5 +20,5 @@ public class Resultado {
 
     private Long votosSim;
     private Long votosNao;
-    private String resultadoFinal; // "Aprovado" ou "Rejeitado"
+    private String resultadoFinal;
 }

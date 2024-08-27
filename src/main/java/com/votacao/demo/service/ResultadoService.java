@@ -20,14 +20,13 @@ public class ResultadoService {
     }
 
     public Map<String, Long> getResultado(Long sessaoId) {
-        // Obtém a sessão pelo ID
+
         Optional<Sessao> sessaoOptional = sessaoService.obterSessaoPorId(sessaoId);
 
-        // Verifica se a sessão está presente
+
         Sessao sessao = sessaoOptional
                 .orElseThrow(() -> new RuntimeException("Sessão de votação não encontrada"));
 
-        // Obtém os votos da sessão
         var votos = votoRepository.findBySessaoId(sessaoId);
 
         // Conta os votos
